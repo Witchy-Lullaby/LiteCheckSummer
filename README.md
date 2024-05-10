@@ -11,18 +11,18 @@ The result will be either:<br></br>
 
 > .txt document with all hashes named with the filename you passed and registry key with path
 <br>--- OR ---</br>
-> Registry Key with result TRUE/FALSE for comparer [Registry/HKEY_CURRENT_USER/MS4S in key COMPARE_HASH_ACTION_RESULT]
+> Registry Key with result TRUE/FALSE for comparer [Registry/HKEY_CURRENT_USER/prime-lime in key COMPARE_HASH_ACTION_RESULT]
 
 <br></br>
 Examples:
 
 To create file named checksum.txt with separator ':' you call arguments like that:
 ```
---compute C:\Users\user\Documents\GitHub\MS4SArgLiteHasher checksum :
+--compute C:\Users\user\Documents\GitHub\LiteHasher checksum :
 ```
 Or to compare already compiled 2 files with different separators ':' and '♡♡♡♡' for example, it would be like that:
 ```
---compare C:\Users\user\Documents\GitHub\MS4SArgLiteHasher\checksum.txt D:\Apps\examples\checksum.txt : ♡♡♡♡ 
+--compare C:\Users\user\Documents\GitHub\LiteHasher\checksum.txt D:\Apps\examples\checksum.txt : ♡♡♡♡ 
 ```
 
 </details>
@@ -34,29 +34,24 @@ Or to compare already compiled 2 files with different separators ':' and '♡♡
 
 > .txt текстовый документ со всеми хеш-суммами в файле с названием который вы указали третьим аргументом после пути
 <br>--- ИЛИ ЖЕ ---</br>
-> Ключ в реестре со значением TRUE/FALSE если используете сравнение [лежит в Редактор Реестра/HKEY_CURRENT_USER/MS4S в ключе который называется COMPARE_HASH_ACTION_RESULT]
+> Ключ в реестре со значением TRUE/FALSE если используете сравнение [лежит в Редактор Реестра/HKEY_CURRENT_USER/prime-lime в ключе который называется COMPARE_HASH_ACTION_RESULT]
 
 <br></br>
 Примеры аргументов:
 
 Для создания файла с именем checksum.txt и разделителем ':' можете передать такие аргументы:
 ```
---compute C:\Users\user\Documents\GitHub\MS4SArgLiteHasher checksum :
+--compute C:\Users\user\Documents\GitHub\LiteHasher checksum :
 ```
 Или же для сравнения двух уже скомпилированных файлов с хеш-суммами но например разными разьеденителями ':' и '♡♡♡♡' это будет выглядеть вот так:
 ```
---compare C:\Users\user\Documents\GitHub\MS4SArgLiteHasher\checksum.txt D:\Apps\examples\checksum.txt : ♡♡♡♡ 
+--compare C:\Users\user\Documents\GitHub\LiteHasher\checksum.txt D:\Apps\examples\checksum.txt : ♡♡♡♡ 
 ```
 
 </details>
 <br></br>
 <details>
-<summary>[EN] i dont get it</summary>
+<summary>i dont get it</summary>
 The same app but with User Interface (buttons and images, u tiktok kids) is located here: (its easier)
-https://github.com/MentallyStable4sure/MD5-Hasher
-</details>
-<details>
-<summary>[RU] что-то я не понял, дядь</summary>
-Точно такое же приложение но с визуальным интерфейсом (букавы сложно) вот тут есть: (оно проще)
-https://github.com/MentallyStable4sure/MD5-Hasher
+https://github.com/prime-lime/MD5-CheckSummer
 </details>
