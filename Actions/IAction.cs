@@ -1,5 +1,5 @@
 ﻿
-namespace MS4SArgHasher.Actions
+namespace PLCheckSummer.Actions
 {
     internal interface IAction
     {

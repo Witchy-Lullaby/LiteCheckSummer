@@ -1,7 +1,7 @@
 ﻿
 using System.Text;
 
-namespace MS4SArgHasher.Actions
+namespace PLCheckSummer.Actions
 {
     internal class CompareAction : IAction
     {

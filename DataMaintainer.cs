@@ -1,11 +1,11 @@
 ﻿using Microsoft.Win32;
 
-namespace MS4SArgHasher.Data
+namespace PLCheckSummer.Data
 {
     internal class DataMaintainer
     {
         public const string USER_ROOT_REGISTRY = "HKEY_CURRENT_USER";
-        public const string REGISTRY_KEY = "MS4S";
+        public const string REGISTRY_KEY = "prime-lime";
 
 
         public string RegistryKey { get; private set; }

@@ -1,6 +1,6 @@
-﻿using MS4SArgHasher.Data;
+﻿using PLCheckSummer.Data;
 
-namespace MS4SArgHasher.Actions
+namespace PLCheckSummer.Actions
 {
     internal class ArgumentAction : IAction
     {

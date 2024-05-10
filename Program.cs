@@ -1,4 +1,4 @@
-﻿using MS4SArgHasher.Actions;
+﻿using PLCheckSummer.Actions;
 
 string[] arguments = Environment.GetCommandLineArgs();
 

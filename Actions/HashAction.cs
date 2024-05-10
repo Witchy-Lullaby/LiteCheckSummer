@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Security.Cryptography;
 
-namespace MS4SArgHasher.Actions
+namespace PLCheckSummer.Actions
 {
     internal class HashAction : IAction
     {
