@@ -1,6 +1,6 @@
 ﻿using Microsoft.Win32;
 
-namespace PLCheckSummer.Data
+namespace LLM.CheckSummer.Data
 {
     internal class DataMaintainer
     {

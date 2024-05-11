@@ -1,6 +1,6 @@
-﻿using PLCheckSummer.Data;
+﻿using LLM.CheckSummer.Data;
 
-namespace PLCheckSummer.Actions
+namespace LLM.CheckSummer.Actions
 {
     internal class ArgumentAction : IAction
     {

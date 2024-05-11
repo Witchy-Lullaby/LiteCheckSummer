@@ -1,8 +1,8 @@
-# prime-lime LiteHasher [CheckSummer]
+# LLM LiteHasher [CheckSummer]
 [Console] Even more lite version of MD5 CheckSummer Hasher and comparer with custom settings. Version without UI that can compare and compute chekcsums into .txt file.<br></br>
 
-> Version with UI [<a href="https://github.com/prime-lime/MD5-CheckSummer">clickable</a>]: 
-<br><a href="https://github.com/prime-lime/MD5-CheckSummer"><img width="100" height="150" src="https://github.com/prime-lime/MD5-CheckSummer/blob/main/examples/1.png"> <img width="100" height="150" src="https://github.com/prime-lime/MD5-CheckSummer/blob/main/examples/2.png"> <img width="100" height="150" src="https://github.com/prime-lime/MD5-CheckSummer/blob/main/examples/3.png"> </a></br>
+> Version with UI [<a href="https://github.com/limelight-mint/MD5-CheckSummer">clickable</a>]: 
+<br><a href="https://github.com/limelight-mint/MD5-CheckSummer"><img width="100" height="150" src="https://github.com/limelight-mint/MD5-CheckSummer/blob/main/examples/1.png"> <img width="100" height="150" src="https://github.com/limelight-mint/MD5-CheckSummer/blob/main/examples/2.png"> <img width="100" height="150" src="https://github.com/limelight-mint/MD5-CheckSummer/blob/main/examples/3.png"> </a></br>
 
 <details>
 <summary>[EN] How to use?</summary>
@@ -53,5 +53,5 @@ Or to compare already compiled 2 files with different separators ':' and '♡♡
 <details>
 <summary>i dont get it</summary>
 The same app but with User Interface (buttons and images, u tiktok kids) is located here: (its easier)
-https://github.com/prime-lime/MD5-CheckSummer
+https://github.com/limelight-mint/MD5-CheckSummer
 </details>

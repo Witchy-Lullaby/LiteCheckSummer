@@ -1,5 +1,5 @@
 ﻿
-namespace PLCheckSummer.Actions
+namespace LLM.CheckSummer.Actions
 {
     internal interface IAction
     {

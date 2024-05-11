@@ -1,7 +1,7 @@
 ﻿
 using System.Text;
 
-namespace PLCheckSummer.Actions
+namespace LLM.CheckSummer.Actions
 {
     internal class CompareAction : IAction
     {
