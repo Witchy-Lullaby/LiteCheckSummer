@@ -5,7 +5,7 @@ namespace LLM.CheckSummer.Data
     internal class DataMaintainer
     {
         public const string USER_ROOT_REGISTRY = "HKEY_CURRENT_USER";
-        public const string REGISTRY_KEY = "prime-lime";
+        public const string REGISTRY_KEY = "LLM";
 
 
         public string RegistryKey { get; private set; }

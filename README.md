@@ -11,7 +11,7 @@ The result will be either:<br></br>
 
 > .txt document with all hashes named with the filename you passed and registry key with path
 <br>--- OR ---</br>
-> Registry Key with result TRUE/FALSE for comparer [Registry/HKEY_CURRENT_USER/prime-lime in key COMPARE_HASH_ACTION_RESULT]
+> Registry Key with result TRUE/FALSE for comparer [Registry/HKEY_CURRENT_USER/LLM in key COMPARE_HASH_ACTION_RESULT]
 
 <br></br>
 Examples:
@@ -34,7 +34,7 @@ Or to compare already compiled 2 files with different separators ':' and '♡♡
 
 > .txt текстовый документ со всеми хеш-суммами в файле с названием который вы указали третьим аргументом после пути
 <br>--- ИЛИ ЖЕ ---</br>
-> Ключ в реестре со значением TRUE/FALSE если используете сравнение [лежит в Редактор Реестра/HKEY_CURRENT_USER/prime-lime в ключе который называется COMPARE_HASH_ACTION_RESULT]
+> Ключ в реестре со значением TRUE/FALSE если используете сравнение [лежит в Редактор Реестра/HKEY_CURRENT_USER/LLM в ключе который называется COMPARE_HASH_ACTION_RESULT]
 
 <br></br>
 Примеры аргументов:
