@@ -33,7 +33,7 @@ namespace LLM.CheckSummer.Actions
             return this;
         }
 
-        public void Start() => Compare(pathDataFirstFile, pathDataSecondFile, separatorFirstFile, separatorSecondFile);
+        public void Start() => Result = Compare(pathDataFirstFile, pathDataSecondFile, separatorFirstFile, separatorSecondFile);
 
         public bool Compare()
         {
