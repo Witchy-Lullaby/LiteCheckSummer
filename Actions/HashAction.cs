@@ -31,7 +31,7 @@ namespace LLM.CheckSummer.Actions
             pathData = data[1];
             separator = data.Length > 2 ? data[2] : ":";
             filename = data.Length > 3 ? data[3] : "checksum";
-            isFileCreationNeeded = data.Length > 3 && data[3].Contains("++"); //if its not the additional argument and it exists thats probably a filename right?
+            isFileCreationNeeded = data.Length > 3 && !data[3].Contains("++"); //if its not the additional argument and it exists thats probably a filename right?
 
             if (data.Contains("++fullPath")) isFullPathInsteadRelative = true;
 
