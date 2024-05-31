@@ -6,6 +6,6 @@ namespace LLM.CheckSummer.Actions
         public void Start();
 
         public string[] GetData();
-        public void SetData(params string[] datas);
+        public IAction SetData(params string[] datas);
     }
 }

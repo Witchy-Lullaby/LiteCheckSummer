@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace LLM.CheckSummer.Actions
 {
@@ -11,10 +10,15 @@ namespace LLM.CheckSummer.Actions
         private string filename = string.Empty;
         private string separator = string.Empty;
 
+        private bool isFileCreationNeeded = false;
+        private bool isFullPathInsteadRelative = false;
+
+        public string[] ResultLines { get; private set; }
         public string FilePath { get; private set; } = string.Empty;
 
         public const string INFO_DECORATOR = "♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡";
-        public const string DATA_MAINTAINER_KEY = "COMPUTE_HASH_ACTION_RESULT";
+        public const string DATA_MAINTAINER_RESULT_KEY = "COMPUTE_HASH_ACTION_RESULT";
+        public const string DATA_MAINTAINER_FILEPATH_KEY = "COMPUTE_HASH_ACTION_FILEPATH";
 
         public string[] GetData() => new string[3] { pathData, filename, separator };
 
@@ -22,11 +26,17 @@ namespace LLM.CheckSummer.Actions
         /// data arguments, second one is path, third is filename and forth is separator, second one is mandatory
         /// </summary>
         /// <param name="data">arguments passed to the console</param>
-        public void SetData(params string[] data)
+        public IAction SetData(params string[] data)
         {
             pathData = data[1];
-            filename = data.Length > 2 ? data[2] : "checksum";
-            separator = data.Length > 3 ? data[3] : ":";
+            separator = data.Length > 2 ? data[2] : ":";
+            filename = data.Length > 3 ? data[3] : "checksum";
+            isFileCreationNeeded = data.Length > 3 && data[3].Contains("++"); //if its not the additional argument and it exists thats probably a filename right?
+
+            if (data.Contains("++fullPath")) isFullPathInsteadRelative = true;
+
+            Console.WriteLine($"[SET DATA] Filename: {filename} | Separator: {separator} \nPath: {pathData}\n\n");
+            return this;
         }
 
         public void Start() => Checksum(pathData, filename, separator);
@@ -34,8 +44,13 @@ namespace LLM.CheckSummer.Actions
         public void Checksum(string path, string customFilename, string customSeparator)
         {
             if (path.Length <= 1 && pathData.Length <= 1) path = Directory.GetCurrentDirectory();
+            if (!Directory.Exists(path))
+            {
+                path = Directory.GetCurrentDirectory();
+                Console.WriteLine($"[ERROR] This directory does not exist: {path}\n\nCreating checksums from current directory: {path}\n");
+            }
 
-            Debug.WriteLine("Computing MD5 hashes...");
+            Console.WriteLine("Computing MD5 hashes...");
 
             string hashListFile = Path.Combine(path, $"{customFilename}{CustomFormat}");
             FilePath = hashListFile;
@@ -45,7 +60,7 @@ namespace LLM.CheckSummer.Actions
             int counter = 0;
             string[] allFiles = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories); //get all files from main path and its subfolders
 
-            File.Create(hashListFile).Close(); //create file
+            if (isFileCreationNeeded) File.Create(hashListFile).Close(); //create file
 
             string[] lines = new string[allFiles.Length];
 
@@ -62,7 +77,7 @@ namespace LLM.CheckSummer.Actions
                         {
                             byte[] fileMD5 = md5.ComputeHash(stream); //hash each file
                             string hash = BitConverter.ToString(fileMD5).Replace("-", "").ToLower(); //convert it to a web and more readable string
-                            string currDir = Path.GetRelativePath(path, filePath); //getting the relative path so its not a long version but /{subfolder}/{item}
+                            string currDir = isFullPathInsteadRelative ? filePath : Path.GetRelativePath(path, filePath); //getting the relative path so its not a long version but /{subfolder}/{item}, provide fullPath only if user sets +fullPath
                             lines[counter] = $"{currDir}{customSeparator}{hash}"; //set it to our line formatted as we wanted
                         }
                         counter++;
@@ -70,14 +85,18 @@ namespace LLM.CheckSummer.Actions
                 }
             }
 
-            Debug.WriteLine("Writing hashes to a file...");
-            WriteToFile(hashListFile, lines);
+            ResultLines = lines;
+            if (isFileCreationNeeded)
+            {
+                WriteToFile(hashListFile, lines);
+                Console.WriteLine("Writing hashes to a file...");
+            }
         }
 
         private void WriteToFile(string fileFullPath, string[] lines)
         {
             File.AppendAllLines(fileFullPath, lines);
-            Debug.WriteLine($"{INFO_DECORATOR}\nFile created at {fileFullPath}.\nTotal: {lines.Length} files\n{INFO_DECORATOR}");
+            Console.WriteLine($"{INFO_DECORATOR}\nFile created at {fileFullPath}.\nTotal: {lines.Length} files\n{INFO_DECORATOR}");
         }
     }
 }

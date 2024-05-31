@@ -15,12 +15,14 @@ namespace LLM.CheckSummer.Data
         public void Save(string key, string value)
         {
             Registry.SetValue(RegistryKey, key, value);
+            Console.WriteLine($"Saved '{value}' into '{RegistryKey}\\{key}'");
         }
 
         public string Load(string key)
         {
             string value = (string)Registry.GetValue(RegistryKey, key, string.Empty);
             if (value == null) value = string.Empty;
+            Console.WriteLine($"Loaded '{value}' from '{RegistryKey}\\{key}'");
             return value;
         }
 

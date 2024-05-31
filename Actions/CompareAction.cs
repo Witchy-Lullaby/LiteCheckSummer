@@ -1,25 +1,36 @@
-﻿
-using System.Text;
+﻿using System.Text;
 
 namespace LLM.CheckSummer.Actions
 {
     internal class CompareAction : IAction
     {
+        /// <summary>
+        /// Result of matching:
+        /// <br></br>true = 2 same checksums, they r matched 
+        /// <br></br>false = different checksums, didnt match
+        /// </summary>
+        public bool Result { get; private set; }
+        public StringBuilder Info { get; private set; } = new StringBuilder();
+
         private string pathDataFirstFile = string.Empty;
         private string pathDataSecondFile = string.Empty;
         private string separatorFirstFile = string.Empty;
         private string separatorSecondFile = string.Empty;
 
-        public const string DATA_MAINTAINER_KEY = "COMPARE_HASH_ACTION_RESULT";
+        public const string DATA_MAINTAINER_RESULT_KEY = "COMPARE_HASH_ACTION_RESULT";
+        public const string DATA_MAINTAINER_RESULT_READABLE_KEY = "COMPARE_HASH_ACTION_RESULT_READABLE";
 
         public string[] GetData() => new string[5] { "--compare", pathDataFirstFile, pathDataSecondFile, separatorFirstFile, separatorSecondFile };
 
-        public void SetData(params string[] data)
+        public IAction SetData(params string[] data)
         {
             pathDataFirstFile = data[1];
             pathDataSecondFile = data[2];
             separatorFirstFile = data.Length > 3 ? data[3] : ":";
             separatorSecondFile = data.Length > 4 ? data[4] : ":";
+
+            Console.WriteLine($"[SET DATA]\nFirstFile: {pathDataFirstFile} \nSecondFile: {pathDataSecondFile} \nFirst Separator: {separatorFirstFile} | Second Separator: {separatorSecondFile}\n\n");
+            return this;
         }
 
         public void Start() => Compare(pathDataFirstFile, pathDataSecondFile, separatorFirstFile, separatorSecondFile);
@@ -27,7 +38,8 @@ namespace LLM.CheckSummer.Actions
         public bool Compare()
         {
             string[] data = GetData();
-            return Compare(data[1], data[2], data[3], data[4]);
+            Result = Compare(data[1], data[2], data[3], data[4]);
+            return Result;
         }
 
         public bool Compare(string pathDataFirstFile, string pathDataSecondFile, string separatorFirstFile, string separatorSecondFile)
@@ -35,14 +47,13 @@ namespace LLM.CheckSummer.Actions
             string[] firstFileLines = File.ReadAllLines(pathDataFirstFile);
             string[] secondFileLines = File.ReadAllLines(pathDataSecondFile);
 
-            StringBuilder info = new StringBuilder();
             bool isEqualLength = firstFileLines.Length == secondFileLines.Length;
 
-            info.AppendLine($"[INFO] LINE LENGTH MATCH: {isEqualLength}");
+            Info.AppendLine($"[INFO] LINE LENGTH MATCH: {isEqualLength}");
 
             if (!isEqualLength)
             {
-                info.AppendLine("[ERROR] No need to check further since length arent matching, they are NOT equal");
+                Info.AppendLine("[ERROR] No need to check further since length arent matching, they are NOT equal");
                 return false;
             }
 
@@ -52,19 +63,19 @@ namespace LLM.CheckSummer.Actions
                 string[] split = firstFileLines[i].Split(separatorFirstFile);
                 if (split == null || split.Length < 2)
                 {
-                    info.AppendLine($"[ERROR] We tried to split hash with path in half but we couldn't, double check separator, you gave us: '{separatorFirstFile}', but looks like they separated between with other symbol");
+                    Info.AppendLine($"[ERROR] We tried to split hash with path in half but we couldn't, double check separator, you gave us: '{separatorFirstFile}', but looks like they separated between with other symbol");
                     return false;
                 }
                 string firstHash = split[1]; //first file separator TODO: custom player separator
 
                 if (!CheckPair(firstHash, secondFileLines, separatorSecondFile))
                 {
-                    info.AppendLine($"[ERROR] We tried our best my dudes, but nothing with this hash: {firstHash} was found in second file, you might wanna double check your separator or second file just doesnt have this hash..");
+                    Info.AppendLine($"[ERROR] We tried our best my dudes, but nothing with this hash: {firstHash} was found in second file, you might wanna double check your separator or second file just doesnt have this hash..");
                     return false;
                 }
             }
 
-            info.AppendLine($"\n[SUCCESS] They purrfectly matched each other, 100%");
+            Info.AppendLine($"\n[SUCCESS] They purrfectly matched each other, 100%");
             return true;
         }
 
