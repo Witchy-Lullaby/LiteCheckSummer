@@ -78,5 +78,5 @@ The same app but with User Interface (buttons and images, u tiktok kids) is loca
 https://github.com/limelight-mint/MD5-CheckSummer
 </details>
 
-<br>
-### Disclaimer: DataMaintainer.cs using `Registry.Get/SetValue` which is not cross-platform, if u seek a cross-platform move, just edit those lines. PRs are welcome but must have descriptions of what problem they resolve.
+<br></br>
+#### Disclaimer: `DataMaintainer.cs` using `Registry.Get/SetValue` which is not cross-platform, if u seek a cross-platform move, just edit those lines. PRs are welcome but must have descriptions of what problem they resolve.
